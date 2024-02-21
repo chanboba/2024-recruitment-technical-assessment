@@ -3,23 +3,50 @@
  * Task 1
  */
 function leafFiles(files) {
-    return [];
+    const parentIds = files.map(file => file.parent).filter(id => id !== -1);
+    return files.filter(file => !parentIds.includes(file.id)).map(file => file.name);
 }
-
 /**
  * Task 1
  */
 function kLargestCategories(files, k) {
-    return [];
+    const categoryCounts = {};
+    files.forEach(file => {
+        file.categories.forEach(category => {
+            if (categoryCounts[category]) {
+                categoryCounts[category]++;
+            } else {
+                categoryCounts[category] = 1;
+            }
+        });
+    });
+    return Object.entries(categoryCounts)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .slice(0, k)
+        .map(entry => entry[0]);
 }
 
 /**
  * Task 1
  */
 function largestFileSize(files) {
-    return 0;
+    const parentIdToFile = files.reduce((acc, file) => {
+        (acc[file.parent] = acc[file.parent] || []).push(file);
+        return acc;
+    }, {});
+
+    return files.filter(file => file.parent === -1).reduce((max, file) => {
+        const totalSize = calculateTotalSize(file.id, files, parentIdToFile);
+        return Math.max(max, totalSize);
+    }, 0);
 }
 
+// helper function which recursively finds total size 
+function calculateTotalSize(fileId, files, parentIdToFile) {
+    const children = parentIdToFile[fileId] || [];
+    const fileSize = files.find(file => file.id === fileId)?.size || 0;
+    return fileSize + children.reduce((acc, child) => acc + calculateTotalSize(child.id, files, parentIdToFile), 0);
+}
 
 function arraysEqual(a, b) {
     if (a === b) return true;
