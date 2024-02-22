@@ -13,21 +13,34 @@ class File:
 Task 1
 """
 def leafFiles(files: list[File]) -> list[str]:
-    return []
+    # file is a parent if their id is not -1
+    parent_files = {file.parent for file in files if file.parent != -1}
+    leaf_files = [file.name for file in files if file.id not in parent_files]
+    
+    return leaf_files
 
 
 """
 Task 2
 """
 def kLargestCategories(files: list[File], k: int) -> list[str]:
-    return []
+    category_counts = Counter(category for file in files for category in file.categories)
+    # Sort categories by count (descending) and then alphabetically
+    sorted_categories = sorted(category_counts, key=lambda x: (-category_counts[x], x))
+    return sorted_categories[:k]
+
+
 
 
 """
 Task 3
 """
 def largestFileSize(files: list[File]) -> int:
-    return 0
+    def total_size(file_id):
+        size = next((file.size for file in files if file.id == file_id), 0)
+        children_sizes = sum(total_size(child.id) for child in files if child.parent == file_id)
+        return size + children_sizes
+    return max((total_size(file.id) for file in files), default=0)
 
 
 if __name__ == '__main__':

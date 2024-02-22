@@ -1,2 +1,15 @@
 Please detail the instructions to view your solution here:
 
+# Install Dependencies
+npm install
+
+# Start the Development Server
+npm start
+
+# Using the Application
+Once the development server is running, your default web browser should open automatically to `http://localhost:3000`.
+
+# Interacting with the Application
+- Click on the "Unilectives" title in the navbar to change its color.
+- Click on the "Search" button to open a simple overlay with a centered box.
+- Click on the "Close" button within the centered box to close the overlay.

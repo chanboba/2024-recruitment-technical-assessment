@@ -1,0 +1,62 @@
+/* Remove the default styles that are not needed */
+/* .App-logo,
+.App-header,
+.App-link {
+  display: none;
+} */
+
+/* Adjust the overall app alignment */
+.App {
+  text-align: left;
+  /* Align text to the start, which is typically left for LTR languages */
+  background: #f7f7f7;
+  /* Set a light background color */
+  color: #333;
+  /* Set a darker color for the text for better readability */
+  font-family: 'Arial', sans-serif;
+  /* Choose a font closer to the one in the image */
+}
+
+/* If there is a need to keep the logo and spin it, adjust the size accordingly */
+.App-logo {
+  height: 10vmin;
+  /* Adjust logo height if needed */
+  pointer-events: none;
+  animation: none;
+  /* Stop the spinning animation */
+}
+
+/* Remove the header styles if not needed */
+/* .App-header {
+  display: none;
+} */
+
+/* You might want to add styles for your navbar, search bar, and course cards */
+.navbar {
+  /* Styles for your navbar */
+}
+
+.search-bar {
+  /* Styles for your search bar */
+}
+
+.course-card {
+  /* Styles for your course cards */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* example shadow */
+  transition: 0.3s;
+  /* smooth transition for hover effects */
+  border-radius: 5px;
+  /* rounded corners for the cards */
+  margin: 1rem;
+  /* add some margin around the cards */
+  background: #ffffff;
+  /* cards should be white */
+}
+
+.course-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  /* a different shadow for hover */
+}
+
+/* Add other styles as needed */
